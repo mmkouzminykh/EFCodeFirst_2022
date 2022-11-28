@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace LibraryGUI
 {
@@ -14,6 +15,7 @@ namespace LibraryGUI
     {
         private IEnumerable<object> _items;
         private Action<object> _callback;
+        //private ProcessSelection _callback;
         public frmSelect(string title, IEnumerable<object> items, Action<object> callback)
         {
             InitializeComponent();
@@ -35,7 +37,7 @@ namespace LibraryGUI
                 MessageBox.Show("Необходимо выбрать элемент");
                 return;
             }
-
+            
             _callback(lstItems.SelectedItem);
 
             this.Close();

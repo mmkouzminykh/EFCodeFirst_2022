@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -156,18 +157,20 @@ namespace LibraryGUI
             book.NovelsChanged += this.ContentListRefresh;
             
             var contents = _context.Novels.ToList();
-            /*
-            ProcessSelection func = new ProcessSelection(this.ProcessSelectedNovel);
-            func += this.TestMethod;
-            var lst = func.GetInvocationList();
 
-            foreach (var d in lst)
-                MessageBox.Show($"Target : {d.Target}, Method: {d.Method}");
+            //ProcessSelection func = new ProcessSelection(this.ProcessSelectedNovel);
+            //func += this.TestMethod;
+            //var lst = func.GetInvocationList();
 
-            Action<object> action = new Action<object>(this.ProcessSelectedNovel);
+            //foreach (var d in lst)
+            //    MessageBox.Show($"Target : {d.Target}, Method: {d.Method}");
 
-            frmSelect frm = new frmSelect("Выберите произведение", contents, this.ProcessSelectedNovel);
-            */
+            //Action<object> action = new Action<object>(this.ProcessSelectedNovel);
+
+
+            //frmSelect frm = new frmSelect("Выберите произведение", contents, func); // объект делегата
+            //frmSelect frm = new frmSelect("Выберите произведение", contents, new Action<object>(this.ProcessSelectedNovel));
+
             /*
             Action<object> action = delegate (object selected)
             {
@@ -179,9 +182,9 @@ namespace LibraryGUI
                 }
                 book.Novels.Add(novel);
                 _context.SaveChanges();
-            }
+            };
+            
             */
-
             frmSelect frm = new frmSelect("Выберите произведение", contents, (object selected) =>
             {
                 Novel novel = selected as Novel;
@@ -195,7 +198,7 @@ namespace LibraryGUI
                 
                 _context.SaveChanges();
             });
-
+            
             frm.Show();
         }
 
@@ -235,6 +238,7 @@ namespace LibraryGUI
             lstContents.Items.Clear();
             foreach(var novel in b.Novels)
                 lstContents.Items.Add(novel);
+            
         }
 
     }

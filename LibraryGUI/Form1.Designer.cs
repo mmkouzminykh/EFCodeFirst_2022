@@ -40,6 +40,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnBooks = new System.Windows.Forms.Button();
+            this.btnGeneric = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCreate
@@ -151,11 +152,22 @@
             this.btnBooks.UseVisualStyleBackColor = true;
             this.btnBooks.Click += new System.EventHandler(this.btnBooks_Click);
             // 
+            // btnGeneric
+            // 
+            this.btnGeneric.Location = new System.Drawing.Point(441, 88);
+            this.btnGeneric.Name = "btnGeneric";
+            this.btnGeneric.Size = new System.Drawing.Size(75, 23);
+            this.btnGeneric.TabIndex = 12;
+            this.btnGeneric.Text = "Выбрать";
+            this.btnGeneric.UseVisualStyleBackColor = true;
+            this.btnGeneric.Click += new System.EventHandler(this.btnGeneric_Click);
+            // 
             // frmTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(551, 248);
+            this.Controls.Add(this.btnGeneric);
             this.Controls.Add(this.btnBooks);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
@@ -188,5 +200,6 @@
         private Button btnSave;
         private Button btnDelete;
         private Button btnBooks;
+        private Button btnGeneric;
     }
 }

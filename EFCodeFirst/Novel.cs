@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EFCodeFirst
 {
-    public class Novel
+    public class Novel: INamable
     {
         public Novel()
         {

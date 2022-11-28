@@ -1,16 +1,23 @@
 using EFCodeFirst;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 
 namespace LibraryGUI
 {
     public partial class frmTest : Form
     {
         LibraryContext context;
+        IServiceProvider serviceProvider;
+        LibraryRepository repository;
 
-        public frmTest()
+        public frmTest(IServiceProvider provider)
         {
             InitializeComponent();
-            context = new LibraryContext();
+            serviceProvider = provider;
+            repository = ActivatorUtilities.CreateInstance<LibraryRepository>(serviceProvider);
+            context = new LibraryContext(repository.connString);
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -86,6 +93,26 @@ namespace LibraryGUI
                 frmBooks frm = new frmBooks(context, a);
                 frm.ShowDialog();
             }
+        }
+
+        private void btnGeneric_Click(object sender, EventArgs e)
+        {
+            var namedList = new NamedList<Author>();
+            foreach(var author in context.Authors)
+                namedList.Add(author);
+
+            foreach (var n in namedList)
+                MessageBox.Show(n.Name);
+
+            /*
+            var names = namedList.GetByName(txtName.Text);
+            foreach (var name in names)
+                MessageBox.Show(name.Name);
+            /*
+            NamedList<Human> humanList;
+            NamedList<Reader> readerList = new NamedList<Reader>();
+            humanList = readerList;
+            */
         }
     }
 }

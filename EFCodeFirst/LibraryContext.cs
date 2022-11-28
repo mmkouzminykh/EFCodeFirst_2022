@@ -9,6 +9,8 @@ namespace EFCodeFirst
 {
     public class LibraryContext: DbContext
     {
+        private string _connString;
+
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Novel> Novels { get; set; }
@@ -17,13 +19,14 @@ namespace EFCodeFirst
         public DbSet<Reader> Readers { get; set; }
         public DbSet<Personnel> Personnel { get; set; }
 
-        public LibraryContext(): base()
+        public LibraryContext(string connString): base()
         {
+            _connString = connString;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseNpgsql("Server=127.0.0.1;Port=5432;Database=Library;User Id=postgres;Password=manager;");
+            builder.UseNpgsql(_connString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

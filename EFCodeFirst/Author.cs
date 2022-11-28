@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EFCodeFirst
 {
-    public class Author
+    public class Author : INamable
     {
         public Author()
         {
@@ -22,7 +22,6 @@ namespace EFCodeFirst
         public DateTime Birthday {get; set; }
 
         public ICollection<Book> Books { get; set; }
-
 
         public override string ToString()
         {

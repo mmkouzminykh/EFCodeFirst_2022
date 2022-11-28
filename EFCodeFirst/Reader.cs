@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EFCodeFirst
 {
-    public class Reader: Human
+    public class Reader: Human, INamable
     {
         [Required]
         [MaxLength(20)]
